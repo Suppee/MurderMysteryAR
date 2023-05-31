@@ -29,15 +29,11 @@ public class GameManager : MonoBehaviour {
             Destroy(this);
         }
     }
-
-    /* private void Start() {
-        SetGameState(GameState.GPS);
-    } */
     
     private void GPSScene() {
         Trigger = GameObject.Find("Trigger");
         gpsLocationText = GameObject.Find("GPSLocationText").GetComponent<TMP_Text>();
-        GameObject.Find("Button").GetComponent<Button>().onClick.AddListener (delegate {ChangeToARScene();});
+        GameObject.Find("Button").GetComponent<Button>().onClick.AddListener(delegate {ChangeToARScene();});
         SetTriggerState(false);
         doeh = null;
         interaction = null;
@@ -54,13 +50,13 @@ public class GameManager : MonoBehaviour {
         doeh.OnTargetLost.AddListener(TargetLost);
         interaction = GameObject.Find("Interaction");
         spawn = GameObject.Find("Spawn");
-        TargetLost();
         timeText = GameObject.Find("Time").GetComponent<TMP_Text>();
         timeSlider = GameObject.Find("Slider").GetComponent<Slider>();
         timeSlider.minValue = 0;
         timeSlider.maxValue = timeSliderMax;
         timeSlider.wholeNumbers = true;
-        timeSlider.onValueChanged.AddListener (delegate {ValueChangeCheck();});
+        timeSlider.onValueChanged.AddListener(delegate {ValueChangeCheck();});
+        TargetLost();
     }
 
     private void ValueChangeCheck() {
@@ -81,6 +77,7 @@ public class GameManager : MonoBehaviour {
     public void TargetFound() {
         interaction.SetActive(true);
         spawn.SetActive(false);
+        ValueChangeCheck();
     }
 
     public void TargetLost() {
