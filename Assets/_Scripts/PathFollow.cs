@@ -5,7 +5,7 @@ namespace PathCreation.Examples {
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollow : MonoBehaviour {
         [SerializeField] private EndOfPathInstruction endOfPathInstruction;
-        [SerializeField] private float distanceTravelled; //=> GameManager.Instance.Time;
+        [SerializeField] private float distanceTravelled;
         [SerializeField] private Transform pathParent;
         private VertexPath path;
 
@@ -14,6 +14,7 @@ namespace PathCreation.Examples {
         }
 
         private void Update() {   
+            distanceTravelled = GameManager.Instance.Time.Map(0f, 360f, 0f, 2f);
             transform.position = path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
         }
