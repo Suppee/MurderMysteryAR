@@ -8,7 +8,7 @@ public class GPSTracker : MonoBehaviour
 {
     private float latitude, longitude; 
     [SerializeField] private MapRenderer mapRenderer; 
-    private Vector2 arPoint = new Vector2(55.392079262060655f, 10.429227288733438f);
+    private Vector2 arPoint = new Vector2(55.391862f, 10.429176f);
     private Vector2 gpsPoint;
     IEnumerator GPSLocation() {
         // Check if the user has location service enabled.
@@ -56,7 +56,7 @@ public class GPSTracker : MonoBehaviour
         gpsPoint = new Vector2(latitude, longitude);
         GameManager.Instance.SetGPSLocationText(gpsPoint);
         float dis = Vector2.Distance(arPoint, gpsPoint);
-        if(dis < 0.0005f) {
+        if(dis < 0.0001f) {
             GameManager.Instance.SetTriggerState(true);
         }
     }
