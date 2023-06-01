@@ -14,7 +14,7 @@ namespace PathCreation.Examples {
         }
 
         private void Update() {   
-            distanceTravelled = GameManager.Instance.Time.Map(0f, 360f, 0f, 2f);
+            //distanceTravelled = GameManager.Instance.Time.Map(0f, 360f, 0f, 2f);
             transform.position = path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
         }
